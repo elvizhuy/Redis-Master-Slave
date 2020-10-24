@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  redis-m1:
+    container_name: redis-m1
+    image: redis
+    network_mode: host
+    restart: always
+    volumes:
+      - ./redis-m1:/usr/local/etc/redis
+#    command: sh -c "redis-server /usr/local/etc/redis/redis-master.conf && redis-server /usr/local/etc/redis/redis-slave.conf 2>&1 &"
+    command: redis-server /usr/local/etc/redis/redis.conf
+#    command: sh /usr/local/etc/redis/start.sh
+
+  redis-m2:
+    container_name: redis-m2
+    image: redis
+    network_mode: host
+    restart: always
+    volumes:
+      - ./redis-m2:/usr/local/etc/redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+
+  redis-m3:
+    container_name: redis-m3
+    image: redis
+    network_mode: host
+    restart: always
+    volumes:
+      - ./redis-m3:/usr/local/etc/redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+
